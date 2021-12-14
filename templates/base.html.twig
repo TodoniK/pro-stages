@@ -2,17 +2,23 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}ProStages{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-			<img src="http://image.noelshack.com/fichiers/2021/50/1/1639398808-logo-prostages.png" height=200 weight=200>
-			<center><h2>Liste des stages</h2></center>
-        {% endblock %}
-
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+        {% block title %}
+		<title>ProStages</title>
+		<div class=logoAccueil>
+		<a href={{path('prostages_accueil')}}>
+		<img src="http://image.noelshack.com/fichiers/2021/50/2/1639483654-acca.png" height=200 weight=200>
+		</a>
+		</div>
+		<div class=titreAccueil>
+		<center><h1>Bienvenue sur Pro Stages !</h1></center><br>
+		</div>
+		{% endblock %}
+		
+		{% block stylesheet %}
+		<link rel="stylesheet" href="./lecss.css" /> 
+		{% endblock %}
+		
+        {% block menu %}	
         {% endblock %}
     </head>
     <body>

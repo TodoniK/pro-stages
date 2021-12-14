@@ -1,19 +1,61 @@
 {% extends 'base.html.twig' %}
 
+{% block menu %}
+<center>
+<button type="button" class="btn btn-secondary" onclick="window.location.href = '{{path('prostages_entreprises')}}';" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Trier par formation
+</button>
+<button type="button" class="btn btn-secondary" onclick="window.location.href = '{{path('prostages_formations')}}';" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Trier par entreprise
+</button>
+</center>
+{% endblock %}
+
 {% block body %}
 
-<h1>Bienvenue du Pro Stages !</h1>
+<center>
+<br><h2> Liste des stages </h2>
+</center>
 
-<p>
-Vous trouverez ci-dessous les dernières ressources pédagogiques ajoutées sur Pro Stages.
-</p>
-<ul>
-	<li>
-		<a href="{{path('prostages_entreprises')}}"> Filtrer par entreprises</a>
-	</li>
-	<li>
-		<a href="{{path('prostages_formations')}}"> Filtrer par formation</a>
-	</li>
-</ul>
+<div class="tableau">
+	  <br>
+	  <center>
+	  <p>
+		Vous trouverez ci-dessous les dernières ressources pédagogiques ajoutées sur Pro Stages.
+	  </p>
+	  <br>
+	  
+	  
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Nom</th>
+            <th>Activité</th>
+			<th>Adresse</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding-left: 20px">Giraud</td>
+            <td style="padding-left: 20px">Pierre</td>
+            <td style="padding-left: 20px">28</td>
+			<td style="padding-left: 20px">28</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 20px">Durand</td>
+            <td style="padding-left: 20px">Victor</td>
+            <td style="padding-left: 20px">26</td>
+			<td style="padding-left: 20px">28</td>
+          </tr>
+          <tr>
+            <td style="padding-left: 20px">Joly</td>
+            <td style="padding-left: 20px">Julia</td>
+            <td style="padding-left: 20px">27</td>
+			<td style="padding-left: 20px">28</td>
+          </tr>
+        </tbody>
+      </table>
+	  </center>
 
 {% endblock %}
