@@ -14,14 +14,23 @@
 		</div>
 		{% endblock %}
 		
-		{% block stylesheet %}
-		<link rel="stylesheet" href="./lecss.css" /> 
-		{% endblock %}
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- BLOCK DES FEUILLES DE STYLE -->
+        	{% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+		{% endblock %}   
 		
         {% block menu %}	
         {% endblock %}
     </head>
     <body>
+    
+    		<!-- BLOCK DES SCRIPTS JAVASCRIPT -->
+		{% block javascripts %}
+			<script src="{{ asset('/js/bootstrap.bundle.min.js') }}" </script>
+		{% endblock %}
+		
         {% block body %}{% endblock %}
     </body>
 </html>
