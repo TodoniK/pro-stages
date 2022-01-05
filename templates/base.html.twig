@@ -2,27 +2,30 @@
 <html>
     <head>
         <meta charset="UTF-8">
+
+		<!-- BLOCK DES FEUILLES DE STYLE -->
+        {% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+		{% endblock %}
+
+		<!-- BLOCK DU TITRE -->
         {% block title %}
-		<title>ProStages</title>
-		<div class=logoAccueil>
-		<a href={{path('prostages_accueil')}}>
-		<img src="http://image.noelshack.com/fichiers/2021/50/2/1639483654-acca.png" height=200 weight=200>
-		</a>
-		</div>
-		<div class=titreAccueil>
-		<center><h1>Bienvenue sur Pro Stages !</h1></center><br>
-		</div>
+			<title>ProStages</title>
+			<div class=logoAccueil>
+			<a href={{path('prostages_accueil')}}>
+			<img src="/img/logo_prostages.png" height=200 weight=200>
+			</a>
+			</div>
+			<div class=titreAccueil>
+			<center><h1>Bienvenue sur Pro Stages !</h1></center><br>
+			</div>
 		{% endblock %}
 		
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<!-- BLOCK DES FEUILLES DE STYLE -->
-        	{% block stylesheets %}
-			<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-		{% endblock %}   
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		
         {% block menu %}	
         {% endblock %}
+		
     </head>
     <body>
     
