@@ -3,37 +3,42 @@
     <head>
         <meta charset="UTF-8">
 
-		<!-- BLOCK DES FEUILLES DE STYLE -->
-        {% block stylesheets %}
-			<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-		{% endblock %}
-
 		<!-- BLOCK DU TITRE -->
         {% block title %}
 			<title>ProStages</title>
 			<div class=logoAccueil>
-			<a href={{path('prostages_accueil')}}>
-			<img src="/img/logo_prostages.png" height=200 weight=200>
-			</a>
+				<center>
+				<a href="{{path('prostages_accueil')}}">
+					<img src="/img/logo_prostages.png" height=200 weight=200>
+				</a>
+				<br>
+				</center>
 			</div>
-			<div class=titreAccueil>
-			<center><h1>Bienvenue sur Pro Stages !</h1></center><br>
-			</div>
+			
 		{% endblock %}
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		
-        {% block menu %}	
-        {% endblock %}
-		
+
     </head>
     <body>
-    
-    		<!-- BLOCK DES SCRIPTS JAVASCRIPT -->
-		{% block javascripts %}
-			<script src="{{ asset('/js/bootstrap.bundle.min.js') }}" </script>
-		{% endblock %}
 		
-        {% block body %}{% endblock %}
+		{% block menu %}	
+        {% endblock %}
+
+		<!-- BLOCK DES FEUILLES DE STYLE -->
+
+
+		{% block body %}
+		{% endblock %}
+
+        {% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+		{% endblock %}
+
+		<!-- BLOCK DES SCRIPTS JAVASCRIPT -->
+		{% block javascripts %}
+			<script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+		{% endblock %}
     </body>
 </html>

@@ -2,10 +2,15 @@
 
 {% block menu %}
 <center>
-<button type="button" class="btn btn-secondary" onclick="window.location.href = '{{path('prostages_entreprises')}}';" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+<br>
+<div class=titreAccueil>
+				<center><h1>Bienvenue sur Pro Stages !</h1></center><br>
+</div>
+<br>
+<button type="button" class="btn btn-success" onclick="window.location.href = '{{path('prostages_formations')}}';" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
   Trier par formation
 </button>
-<button type="button" class="btn btn-secondary" onclick="window.location.href = '{{path('prostages_formations')}}';" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+<button type="button" class="btn btn-success" onclick="window.location.href = '{{path('prostages_entreprises')}}';" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
   Trier par entreprise
 </button>
 </center>
@@ -14,7 +19,7 @@
 {% block body %}
 
 <center>
-<br><h2> Liste des stages </h2>
+<br><br><h2> Liste des stages </h2>
 </center>
 
 <div class="tableau">
@@ -32,7 +37,7 @@
             <th>Titre</th>
             <th>Nom</th>
             <th>Activité</th>
-			<th>Adresse</th>
+			      <th>Adresse</th>
           </tr>
         </thead>
         <tbody>
@@ -57,5 +62,6 @@
         </tbody>
       </table>
 	  </center>
+</div>
 
 {% endblock %}
