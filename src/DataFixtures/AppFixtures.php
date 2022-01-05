@@ -53,12 +53,12 @@ class AppFixtures extends Fixture
         for($i=0 ; $i<15 ; $i++)
         {
             $entreprise = new Entreprise();
-            $entreprise->setActivite($faker->realText($maxNbChars = 50, $indexSize = 2));
+            $entreprise->setActivite($faker->realText(50,2));
             $entreprise->setAdresse($faker->address);
             $entreprise->setNom($faker->company);
             $entreprise->setURLsite($faker->url);
 
-            // Ajout de l'objet entreprise dans un tableau
+            // Ajout de l'objet entreprise dans un tableau 
             $entreprises[]=$entreprise;
             $manager->persist($entreprise);
 
@@ -68,11 +68,11 @@ class AppFixtures extends Fixture
         for($i=0 ; $i<30 ; $i++)
         {
             // Choix d'une entreprise et d'une formation au hasard
-            $entrepriseAssocieAuStage = $faker->numberBetween($min=0 , $max=14);
-            $formationAssocieeAuStage = $faker->numberBetween($min=0, $max=4);
+            $entrepriseAssocieAuStage = $faker->numberBetween(0,14);
+            $formationAssocieeAuStage = $faker->numberBetween(0,4);
 
             $stage = new Stage();
-            $stage->setTitre($faker->realText($maxNbChars = 50, $indexSize = 2));
+            $stage->setTitre($faker->realText(50,2));
             $stage->setDescMissions($faker->realtext());
             $stage->setEmailContact($faker->email);
             $stage->setEntreprise($entreprises[$entrepriseAssocieAuStage]);
