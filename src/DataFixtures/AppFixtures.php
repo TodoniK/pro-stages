@@ -18,69 +18,69 @@ class AppFixtures extends Fixture
 
         // Mise en place des données des formations
         
-        // Mise en place du tableau associatif de données
-        $lesFormations = array(
-            "DUT Info" => "DUT Informatique",
-            "LP Prog Av." => "License Professionnelle Programmation Avancée",
-            "BUT Gim" => "BUT Génie Industriel et Maintenance",
-            "BUT Gea" => "BUT Gestion des Entreprises et des Administrations",
-            "LP Mn" => "License Professionnelle Métiers du Numérique"
-            );
+        // Création formations
+        $dutInfo = new Formation();
+        $dutInfo->setNomLong("DUT Informatique");
+        $dutInfo->setNomCourt("DUT Info");
 
-        // Mise en place du tableau de formations (l'objet)
-        $toutesFormations = array();
+        $dutInfoImagNum = new Formation();
+        $dutInfoImagNum->setNomLong("DUT Informatique et Imagerie Numérique");
+        $dutInfoImagNum->setNomCourt("DUT IIM");
 
-            // Pour chaque donnée, on créer une formation
-            foreach($lesFormations as $unNomCourt => $unNomLong)
-            {
-                $formation=new Formation();
-                $formation->setNomLong($unNomLong);
-                $formation->setNomCourt($unNomCourt);
+        $dutGea = new Formation();
+        $dutGea->setNomLong("DUT Gestion des entreprises et des administrations");
+        $dutGea->setNomCourt("DUT GEA");
 
-                // Et on ajoute l'objet créerau tableau d'objet
-                array_push($toutesFormations,$formation);
+        $lpProg = new Formation();
+        $lpProg->setNomLong("Licence programmation");
+        $lpProg->setNomCourt("LP");
 
-                //Enregistrement des données à envoyer sur la bd
-                $manager->persist($formation);
-            }
+        $dutGenieLogiciel = new Formation();
+        $dutGenieLogiciel->setNomLong("DUT Genie Logiciel");
+        $dutGenieLogiciel->setNomCourt("DUT GL");
 
-        for ($i = 0; $i < 10; $i++) {
+        // Instanciation du tableau d'objet de formations
+        $tableauFormations=array($dutInfo, $dutInfoImagNum, $dutGea, $lpProg, $dutGenieLogiciel);
 
+        // Enregistrement des formations
+        foreach($tableauFormations as $formation)
+        {
+            $manager->persist($formation);
+        }
+
+
+        // Création des entreprises
+        for($i=0 ; $i<15 ; $i++)
+        {
             $entreprise = new Entreprise();
+            $entreprise->setActivite($faker->realText($maxNbChars = 50, $indexSize = 2));
+            $entreprise->setAdresse($faker->address);
+            $entreprise->setNom($faker->company);
+            $entreprise->setURLsite($faker->url);
 
-            // Mise en place des données générées pour les entreprises
-            $entreprise->setActivite($faker->realText(100,2));
-            $entreprise->setAdresse($faker->address(100));
-            $entreprise->setNom($faker->company(30));
-            $entreprise->setURLsite($faker->url(100));
-
-            
-            for($j=0; $j<4; $j++)
-            {
-
-                $stage = new Stage();
-
-                // Mise en place des données pour les stages
-                $stage->setEntreprise($entreprise);
-                $stage->setTitre($faker->catchPhrase(20));
-                $stage->setDescMissions($faker->realText(100,2));
-                $stage->setEmailContact($faker->companyEmail(30));
-                
-                // On choisit une formation aléatoire
-                $formationAChoisir = $faker->numberBetween(0,4);
-                
-                $stage->addFormation($toutesFormations[$formationAChoisir]);
-
-                //Enregistrement des données à envoyer sur la bd
-                $manager->persist($stage);
-
-            }
-
-            //Enregistrement des données à envoyer sur la bd
+            // Ajout de l'objet entreprise dans un tableau
+            $entreprises[]=$entreprise;
             $manager->persist($entreprise);
 
         }
+    
+        // Création des stages
+        for($i=0 ; $i<30 ; $i++)
+        {
+            // Choix d'une entreprise et d'une formation au hasard
+            $entrepriseAssocieAuStage = $faker->numberBetween($min=0 , $max=14);
+            $formationAssocieeAuStage = $faker->numberBetween($min=0, $max=4);
 
+            $stage = new Stage();
+            $stage->setTitre($faker->realText($maxNbChars = 50, $indexSize = 2));
+            $stage->setDescMissions($faker->realtext());
+            $stage->setEmailContact($faker->email);
+            $stage->setEntreprise($entreprises[$entrepriseAssocieAuStage]);
+            $stage->addFormation($tableauFormations[$formationAssocieeAuStage]);
+            
+            $manager->persist($stage);
+        }
+        
         // Envoi des données enregistrées sur la bd
         $manager->flush();
     }
