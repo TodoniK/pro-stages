@@ -20,11 +20,6 @@ class Stage
     private $id;
 
     /**
-     * @ORM\Column(type="smallint")
-     */
-    private $code;
-
-    /**
      * @ORM\Column(type="string", length=50)
      */
     private $titre;
@@ -58,18 +53,6 @@ class Stage
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCode(): ?int
-    {
-        return $this->code;
-    }
-
-    public function setCode(int $code): self
-    {
-        $this->code = $code;
-
-        return $this;
     }
 
     public function getTitre(): ?string
