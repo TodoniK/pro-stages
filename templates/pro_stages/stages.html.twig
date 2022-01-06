@@ -15,7 +15,12 @@
                             <div class="card-header">Stage n°{{stage.id}}</div>
                                 <div class="card-body">
                                     <h4 class="card-title">Titre : {{stage.titre}}</h4>
-                                        <p class="card-text"><h5><b>Formation concernée :</b></h5>
+                                        <p class="card-text"><h5><b>Formation concernée :
+                                                                    {% for uneFormation in stage.formations %}
+                                                                        {{uneFormation.nomCourt}} ({{uneFormation.nomLong}})
+                                                                    {% endfor %}    
+                                                                </b>
+                                                            </h5>
                                                              <b>Description du stage :</b> {{stage.descMissions}} <br>
                                                              <b>Entreprise proposant le stage :</b> {{stage.entreprise.nom}} <br>
                                                              <b>Adresse de l'entreprise :</b> {{stage.entreprise.adresse}} <br>
