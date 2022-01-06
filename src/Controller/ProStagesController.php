@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Stage;
+use App\Entity\Entreprise;
+use App\Entity\Formation;
 
 
 class ProStagesController extends AbstractController
@@ -30,7 +32,14 @@ class ProStagesController extends AbstractController
 	*/
 	public function filtrerEntreprises () : Response
 	{
-		return $this->render('pro_stages/entreprises.html.twig');
+		// Récupérer les repository de mes entités
+		$repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
+		
+		// Récupérer les ressources enregistrées en BD
+		$entreprises = $repositoryEntreprise->findall();
+
+		// Affichage de la vue et passage des données
+		return $this->render('pro_stages/entreprises.html.twig',['entreprises'=>$entreprises]);
 	}
 	
 	/**
@@ -38,7 +47,14 @@ class ProStagesController extends AbstractController
 	*/
 	public function filtrerFormations () : Response
 	{
-		return $this->render('pro_stages/formations.html.twig');
+		// Récupérer les repository de mes entités
+		$repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
+		
+		// Récupérer les ressources enregistrées en BD
+		$formations = $repositoryFormation->findall();
+
+		// Affichage de la vue et passage des données
+		return $this->render('pro_stages/formations.html.twig',['formations'=>$formations]);
 	}
 	
 	/**

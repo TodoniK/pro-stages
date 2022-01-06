@@ -3,7 +3,43 @@
 {% block body %}
 
 <center>
-    <h2> Liste des stages par formation</h2>
+    <br>
+    <h2>Liste des stages par formation</h2>
+    <br>
+
+    {% set debutNouvelleLigne = true %}
+	    
+        <!--Boucle pour créer les conteneurs et remplir les cards-->
+
+        {% for uneFormation in formations %}
+
+        {#Verifier si on est en début de ligne#}
+        {% if debutNouvelleLigne == true %}
+            <div class="row">
+		        
+            {% set debutNouvelleLigne = false %}
+        {% endif %}
+
+        <!--Affichage de l'ensemble des entreprises dans les petites card-->
+                <div class="col-md-4">
+                    <div class="card border-success mb-3" style="max-width: 20rem;">
+                        <div class="card-header">Formation n°{{uneFormation.id}}</div>
+                            <div class="card-body">
+                                <h4 class="card-title">{{uneFormation.nomCourt}}</h4>
+                                    <p class="card-text">{{uneFormation.nomLong}}</p>
+                            </div>
+                    </div>
+                </div>
+		
+        {#Verifier s'il faut passer à la ligne suivante (toutes les 3 entreprises)#}
+        {% if loop.index % 3 == 0 %}
+            </div>
+            <br>
+            {% set debutNouvelleLigne = true %}
+        {% endif %}
+
+        {% endfor %}
+    
 </center>
 
 {% endblock %}
