@@ -70,7 +70,7 @@ class AppFixtures extends Fixture
             $uneActivite = $activites[$faker->numberBetween(0,(count($activites)-1))];
 
             $entreprise = new Entreprise();
-            $entreprise->setActivite($faker->realText(50,2));
+            $entreprise->setActivite($uneActivite);
             $entreprise->setAdresse($faker->address);
             $entreprise->setNom($faker->company);
             $entreprise->setURLsite($faker->url);
