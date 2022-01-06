@@ -18,10 +18,19 @@ class AppFixtures extends Fixture
 
         // Mise en place des données des formations
         
-        // Création des données aléatoires cohérentes
+        // Création des données aléatoires cohérentes pour stage
         $languages = array("C","C++","Java","Xamarin","Python","Bash","MySQL");
         $métiers = array("Développeur","Concepteur","Analyste","Programmeur","Pentester");
         $objets = array("Développement d'application","Conception de programme","Refonte d'un site web","Programmation d'un OS");
+
+        // Création activité cohérente pour entreprise
+        $activites = array("Production de progciels de gestion intégré pour clients privés",
+                           "Refonte de sites web pour institution publiques",
+                           "Réparation de programmes informatique pour OGN",
+                           "Installation de fibre optique dans des zones rurales",
+                           "Don d'organes aux hopitaux de France",
+                           "Télécommunication pour personnes en situation de handicap",
+                           "Gestion comptable à distance pour entreprises publics");
 
         // Création formations
         $dutInfo = new Formation();
@@ -57,6 +66,9 @@ class AppFixtures extends Fixture
         // Création des entreprises
         for($i=0 ; $i<15 ; $i++)
         {
+
+            $uneActivite = $activites[$faker->numberBetween(0,(count($activites)-1))];
+
             $entreprise = new Entreprise();
             $entreprise->setActivite($faker->realText(50,2));
             $entreprise->setAdresse($faker->address);
