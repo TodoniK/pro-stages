@@ -5,22 +5,22 @@
 <center>
 
     <br>
-    <h1>Vous êtes sur le stage numéro {{ idStage }}</h1>
+    <h1>Vous êtes sur le stage numéro {{stage.id}}</h1>
     <br>
 </center>   
  
     <div class="container-fluid">
         <div class="col-md-12">
                         <div class="card border-success mb-3">
-                            <div class="card-header">Stage n° caca</div>
+                            <div class="card-header">Stage n°{{stage.id}}</div>
                                 <div class="card-body">
-                                    <h4 class="card-title">Titre du stage</h4>
+                                    <h4 class="card-title">Titre : {{stage.titre}}</h4>
                                         <p class="card-text"><h5><b>Formation concernée :</b></h5>
-                                                             <b>Description du stage :</b> blabla <br>
-                                                             <b>Entreprise proposant le stage :</b> blabla <br>
-                                                             <b>Adresse de l'entreprise :</b> blabla <br>
-                                                             <b>Contact de l'entreprise :</b> blabla <br>
-                                                             <b>Lien vers le site de l'entreprise :</b> blabla <br>
+                                                             <b>Description du stage :</b> {{stage.descMissions}} <br>
+                                                             <b>Entreprise proposant le stage :</b> {{stage.entreprise.nom}} <br>
+                                                             <b>Adresse de l'entreprise :</b> {{stage.entreprise.adresse}} <br>
+                                                             <b>Contact de l'entreprise :</b> {{stage.emailContact}} <br>
+                                                             <b>Lien vers le site de l'entreprise :</b> {{stage.entreprise.URLsite}} <br>
                                         </p>
                                 </div>
                         </div>
