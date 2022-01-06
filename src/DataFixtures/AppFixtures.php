@@ -33,6 +33,22 @@ class AppFixtures extends Fixture
                            "Gestion comptable à distance pour entreprises publics");
 
         // Création formations
+        $butGim = new Formation();
+        $butGim->setNomLong("BUT GÉNIE INDUSTRIEL ET MAINTENANCE");
+        $butGim->setNomCourt("BUT GIM");
+
+        $lpEi = new Formation();
+        $lpEi->setNomLong("LP ECOLOGIE INDUSTRIELLE");
+        $lpEi->setNomCourt("LP EI");
+
+        $butTdc = new Formation();
+        $butTdc->setNomLong("BUT TECHNIQUES DE COMMERCIALISATION");
+        $butTdc->setNomCourt("BUT TDC");
+
+        $lpCaa = new Formation();
+        $lpCaa->setNomLong("LP COMMERCIALISATION AGRODISTRI ET AGROALIMENTAIRE");
+        $lpCaa->setNomCourt("LP CAA");
+
         $dutInfo = new Formation();
         $dutInfo->setNomLong("DUT Informatique");
         $dutInfo->setNomCourt("DUT Info");
@@ -54,7 +70,7 @@ class AppFixtures extends Fixture
         $dutGenieLogiciel->setNomCourt("DUT GL");
 
         // Instanciation du tableau d'objet de formations
-        $tableauFormations=array($dutInfo, $dutInfoImagNum, $dutGea, $lpProg, $dutGenieLogiciel);
+        $tableauFormations=array($dutInfo, $dutInfoImagNum, $dutGea, $lpProg, $dutGenieLogiciel,$butGim,$lpEi,$butTdc,$lpCaa);
 
         // Enregistrement des formations
         foreach($tableauFormations as $formation)
