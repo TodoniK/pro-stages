@@ -18,6 +18,11 @@ class AppFixtures extends Fixture
 
         // Mise en place des données des formations
         
+        // Création des données aléatoires cohérentes
+        $languages = array("C","C++","Java","Xamarin","Python","Bash","MySQL");
+        $métiers = array("Développeur","Concepteur","Analyste","Programmeur","Pentester");
+        $objets = array("Développement d'application","Conception de programme","Refonte d'un site web","Programmation d'un OS");
+
         // Création formations
         $dutInfo = new Formation();
         $dutInfo->setNomLong("DUT Informatique");
@@ -71,9 +76,12 @@ class AppFixtures extends Fixture
             $entrepriseAssocieAuStage = $faker->numberBetween(0,14);
             $formationAssocieeAuStage = $faker->numberBetween(0,4);
 
+            $unTitre = $métiers[$faker->numberBetween(0,(count($métiers)-1))]." en ".$languages[$faker->numberBetween(0,(count($métiers)-1))];
+            $uneDescription = $objets[$faker->numberBetween(0,(count($objets)-1))]." en ".$languages[$faker->numberBetween(0,(count($métiers)-1))]." sur une période de ".$faker->numberBetween(0,12)." mois.";
+
             $stage = new Stage();
-            $stage->setTitre($faker->realText(50,2));
-            $stage->setDescMissions($faker->realtext());
+            $stage->setTitre($unTitre);
+            $stage->setDescMissions($uneDescription);
             $stage->setEmailContact($faker->email);
             $stage->setEntreprise($entreprises[$entrepriseAssocieAuStage]);
             $stage->addFormation($tableauFormations[$formationAssocieeAuStage]);

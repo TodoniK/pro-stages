@@ -23,15 +23,16 @@
 </center>
 
 <div class="tableau">
-	  <br>
-	  <center>
-	  <p>
-		Vous trouverez ci-dessous les dernières ressources pédagogiques ajoutées sur Pro Stages.
-	  </p>
-	  <br>
-	  
+	<br>
+	<center>
+      <p>
+      Vous trouverez ci-dessous les dernières ressources pédagogiques ajoutées sur Pro Stages.
+      </p>
+	<br>
 	  
       <table class="table table-striped">
+        
+        <!--Définition du contenu de mon tableau-->
         <thead>
           <tr>
             <th>Titre</th>
@@ -40,27 +41,24 @@
 			      <th>Adresse</th>
           </tr>
         </thead>
+
+        <!--Inscription de mes données dans le tableau-->
         <tbody>
+          
+          {% for unStage in stages %}
+          
           <tr>
-            <td style="padding-left: 20px">Giraud</td>
+            <td style="padding-left: 20px">{{unStage.titre}}</td>
             <td style="padding-left: 20px">Pierre</td>
             <td style="padding-left: 20px">28</td>
-			<td style="padding-left: 20px">28</td>
+			      <td style="padding-left: 20px">28</td>
           </tr>
-          <tr>
-            <td style="padding-left: 20px">Durand</td>
-            <td style="padding-left: 20px">Victor</td>
-            <td style="padding-left: 20px">26</td>
-			<td style="padding-left: 20px">28</td>
-          </tr>
-          <tr>
-            <td style="padding-left: 20px">Joly</td>
-            <td style="padding-left: 20px">Julia</td>
-            <td style="padding-left: 20px">27</td>
-			<td style="padding-left: 20px">28</td>
-          </tr>
-        </tbody>
+
+          {% endfor %}
+          </tbody>
+      
       </table>
+
 	  </center>
 </div>
 
