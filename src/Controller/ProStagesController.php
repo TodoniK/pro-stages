@@ -15,6 +15,9 @@ use App\Repository\EntrepriseRepository;
 
 class ProStagesController extends AbstractController
 {
+
+	// Utilisation du système d'injection de dépendances poussé
+
     /**
      * @Route("/", name="prostages_accueil")
      */
@@ -51,42 +54,36 @@ class ProStagesController extends AbstractController
 		return $this->render('pro_stages/formations.html.twig',['formations'=>$formations]);
 	}
 	
+
+	// Utilisation du système d'injection de dépendances poussé
+
 	/**
 	 * @Route ("/stages/{id}" , name ="prostages_stages")
 	 */
-	 public function afficherStages (StageRepository $repositoryStage, $id) : Response
-	 {	
-		// Récupérer les ressources enregistrées en BD
-		$stage = $repositoryStage->find($id);
-
+	 public function afficherStages (Stage $stage) : Response
+	 {
 		// Affichage de la vue et passage des données
-		return $this->render('pro_stages/stages.html.twig',['stage' => $stage,]);
+		return $this->render('pro_stages/stages.html.twig',['stage' => $stage]);
 		
 	 }
 
 	/**
 	 * @Route ("/formations/{id}" , name ="prostages_formations_stages")
 	 */
-	public function afficherStagesParFormations (FormationRepository $repositoryStageParFormations,$id) : Response
-	{  
-	   // Récupérer les ressources enregistrées en BD
-	   $stageParFormation = $repositoryStageParFormations->find($id);
-
+	public function afficherStagesParFormations (Formation $stageParFormation) : Response
+	{
 	   // Affichage de la vue et passage des données
-	   return $this->render('pro_stages/stagesParFormation.html.twig',['stageParFormation' => $stageParFormation,]);
+	   return $this->render('pro_stages/stagesParFormation.html.twig',['stageParFormation' => $stageParFormation]);
 	   
 	}
 
 	/**
 	 * @Route ("/entreprises/{id}" , name ="prostages_entreprises_stages")
 	 */
-	public function afficherStagesParEntreprises (EntrepriseRepository $repositoryStageParEntreprises,$id) : Response
+	public function afficherStagesParEntreprises (Entreprise $stageParEntreprise) : Response
 	{
-	   // Récupérer les ressources enregistrées en BD
-	   $stageParEntreprise = $repositoryStageParEntreprises->find($id);
-
 	   // Affichage de la vue et passage des données
-	   return $this->render('pro_stages/stagesParEntreprise.html.twig',['stageParEntreprise' => $stageParEntreprise,]);
+	   return $this->render('pro_stages/stagesParEntreprise.html.twig',['stageParEntreprise' => $stageParEntreprise]);
 	   
 	}
 }
