@@ -34,11 +34,33 @@
 
         {% block stylesheets %}
 			<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+			<link href={{asset('css/fontello.css')}} rel="stylesheet">
 		{% endblock %}
 
 		<!-- BLOCK DES SCRIPTS JAVASCRIPT -->
 		{% block javascripts %}
 			<script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
 		{% endblock %}
+
+		{% block footer %}
+
+		<div class="row">
+			
+			<div class="copyright col-md-2">
+				<p><center><i class="icon-copyright"></i> Jules Royet</center></p>
+			</div>
+
+			<div class="formation col-md-2 offset-md-3">
+				<p><center><i class="icon-laptop"></i> DUT Informatique</center></p>
+			</div>
+
+			<div class="annee col-md-2 offset-md-3">
+				<p><center><i class="icon-book"></i> 2022</center></p>
+			</div>
+			
+		</div>
+
+		{% endblock %}
+
     </body>
 </html>

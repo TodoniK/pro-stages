@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
+use App\Repository\StageRepository;
+use App\Repository\FormationRepository;
+use App\Repository\EntrepriseRepository;
 
 
 class ProStagesController extends AbstractController
@@ -15,11 +18,8 @@ class ProStagesController extends AbstractController
     /**
      * @Route("/", name="prostages_accueil")
      */
-    public function index(): Response
+    public function index(StageRepository $repositoryStage): Response
     {
-		// Récupérer les repository de mes entités
-		$repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
-		
 		// Récupérer les ressources enregistrées en BD
 		$stages = $repositoryStage->findall();
 
@@ -30,11 +30,8 @@ class ProStagesController extends AbstractController
 	/**
 	* @Route ("/entreprises" , name ="prostages_entreprises")
 	*/
-	public function filtrerEntreprises () : Response
+	public function filtrerEntreprises (EntrepriseRepository $repositoryEntreprise) : Response
 	{
-		// Récupérer les repository de mes entités
-		$repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
-		
 		// Récupérer les ressources enregistrées en BD
 		$entreprises = $repositoryEntreprise->findall();
 
@@ -45,11 +42,8 @@ class ProStagesController extends AbstractController
 	/**
 	* @Route ("/formations" , name ="prostages_formations")
 	*/
-	public function filtrerFormations () : Response
+	public function filtrerFormations (FormationRepository $repositoryFormation) : Response
 	{
-		// Récupérer les repository de mes entités
-		$repositoryFormation = $this->getDoctrine()->getRepository(Formation::class);
-		
 		// Récupérer les ressources enregistrées en BD
 		$formations = $repositoryFormation->findall();
 
