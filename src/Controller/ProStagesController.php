@@ -54,12 +54,8 @@ class ProStagesController extends AbstractController
 	/**
 	 * @Route ("/stages/{id}" , name ="prostages_stages")
 	 */
-	 public function afficherStages ($id) : Response
-	 {
-
-		// Récupérer les repository de mes entités
-		$repositoryStage = $this->getDoctrine()->getRepository(Stage::class);
-		
+	 public function afficherStages (StageRepository $repositoryStage, $id) : Response
+	 {	
 		// Récupérer les ressources enregistrées en BD
 		$stage = $repositoryStage->find($id);
 
@@ -71,12 +67,8 @@ class ProStagesController extends AbstractController
 	/**
 	 * @Route ("/formations/{id}" , name ="prostages_formations_stages")
 	 */
-	public function afficherStagesParFormations ($id) : Response
-	{
-
-	   // Récupérer les repository de mes entités
-	   $repositoryStageParFormations = $this->getDoctrine()->getRepository(Formation::class);
-	   
+	public function afficherStagesParFormations (FormationRepository $repositoryStageParFormations,$id) : Response
+	{  
 	   // Récupérer les ressources enregistrées en BD
 	   $stageParFormation = $repositoryStageParFormations->find($id);
 
@@ -88,12 +80,8 @@ class ProStagesController extends AbstractController
 	/**
 	 * @Route ("/entreprises/{id}" , name ="prostages_entreprises_stages")
 	 */
-	public function afficherStagesParEntreprises ($id) : Response
+	public function afficherStagesParEntreprises (EntrepriseRepository $repositoryStageParEntreprises,$id) : Response
 	{
-
-	   // Récupérer les repository de mes entités
-	   $repositoryStageParEntreprises = $this->getDoctrine()->getRepository(Entreprise::class);
-	   
 	   // Récupérer les ressources enregistrées en BD
 	   $stageParEntreprise = $repositoryStageParEntreprises->find($id);
 
