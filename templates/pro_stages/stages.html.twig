@@ -17,7 +17,11 @@
                                     <h4 class="card-title">Titre : {{stage.titre}}</h4>
                                         <p class="card-text"><h5><b>Formation concernée :
                                                                     {% for uneFormation in stage.formations %}
-                                                                        {{uneFormation.nomCourt}} ({{uneFormation.nomLong}})
+                                                                        {% if loop.last %}
+                                                                            {{uneFormation.nomCourt}} ({{uneFormation.nomLong}}).
+                                                                        {% else %}
+                                                                            {{uneFormation.nomCourt}} ({{uneFormation.nomLong}}), 
+                                                                        {% endif %}
                                                                     {% endfor %}    
                                                                 </b>
                                                             </h5>

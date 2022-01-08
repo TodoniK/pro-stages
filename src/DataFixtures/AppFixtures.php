@@ -80,7 +80,7 @@ class AppFixtures extends Fixture
 
 
         // Création des entreprises
-        for($i=0 ; $i<15 ; $i++)
+        for($i=0 ; $i<9 ; $i++)
         {
 
             $uneActivite = $activites[$faker->numberBetween(0,(count($activites)-1))];
@@ -101,8 +101,8 @@ class AppFixtures extends Fixture
         for($i=0 ; $i<30 ; $i++)
         {
             // Choix d'une entreprise et d'une formation au hasard
-            $entrepriseAssocieAuStage = $faker->numberBetween(0,14);
-            $formationAssocieeAuStage = $faker->numberBetween(0,4);
+            $entrepriseAssocieAuStage = $faker->numberBetween(0,8);
+            $formationAssocieeAuStage = $faker->numberBetween(0,count($tableauFormations)-1);
 
             $unTitre = $métiers[$faker->numberBetween(0,(count($métiers)-1))]." en ".$languages[$faker->numberBetween(0,(count($métiers)-1))];
             $uneDescription = $objets[$faker->numberBetween(0,(count($objets)-1))]." en ".$languages[$faker->numberBetween(0,(count($métiers)-1))]." sur une période de ".$faker->numberBetween(0,12)." mois.";
@@ -112,7 +112,14 @@ class AppFixtures extends Fixture
             $stage->setDescMissions($uneDescription);
             $stage->setEmailContact($faker->email);
             $stage->setEntreprise($entreprises[$entrepriseAssocieAuStage]);
-            $stage->addFormation($tableauFormations[$formationAssocieeAuStage]);
+
+            for($j=0; $j<3; $j++)
+            {
+                $formationAssocieeAuStage = $faker->unique()->numberBetween(0,count($tableauFormations)-1);
+                $stage->addFormation($tableauFormations[$formationAssocieeAuStage]);
+            }
+
+            $faker->unique($reset = true);
             
             $manager->persist($stage);
         }
