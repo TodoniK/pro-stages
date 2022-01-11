@@ -6,20 +6,15 @@
 <div class=titreAccueil>
 				<center><h1>Bienvenue sur Pro Stages !</h1></center><br>
 </div>
-<br>
-<button type="button" class="btn btn-success" onclick="window.location.href = '{{path('prostages_formations')}}';" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-  Trier par formation
-</button>
-<button type="button" class="btn btn-success" onclick="window.location.href = '{{path('prostages_entreprises')}}';" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-  Trier par entreprise
-</button>
+
+
 </center>
 {% endblock %}
 
 {% block body %}
 
 <center>
-<br><br><h2> Liste des stages </h2>
+<br><h2> Liste des stages </h2>
 </center>
 
 	<br>
@@ -49,7 +44,7 @@
           {% for unStage in stages %}
           
           <tr>
-            <td style="padding-left: 20px"><a href="{{path('prostages_stages',{id:unStage.id})}}">{{unStage.titre}}</a></td>
+            <td style="padding-left: 20px"><a href="{{path('prostages_stages',{id:unStage.id})}}" class="link-success">{{unStage.titre}}</a></td>
             <td style="padding-left: 20px">{{unStage.entreprise.nom}}</td>
             <td style="padding-left: 20px">{{unStage.descMissions}}</td>
             <td style="padding-left: 20px">{{unStage.emailContact}}</td>

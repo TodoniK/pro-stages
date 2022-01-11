@@ -6,7 +6,7 @@
 		<!-- BLOCK DU TITRE -->
         {% block title %}
 			<title>ProStages</title>
-			<div class=logoAccueil>
+			<div class="logoAccueil">
 				<center>
 				<a href="{{path('prostages_accueil')}}">
 					<img src="/img/logo_prostages.png" height=200 weight=200>
@@ -14,7 +14,26 @@
 				<br>
 				</center>
 			</div>
+
+			<br>
 			
+			<div class="row">
+
+				<div class="col-md-6">
+					<center>
+						<a href="{{path('prostages_formations')}}" class="link-success">Trier par formation</a>
+					</center>
+				</div>
+
+				<div class="col-md-6">
+					<center>
+						<a href="{{path('prostages_entreprises')}}" class="link-success">Trier par entreprise</a>
+					</center>
+				</div>
+
+				</div>
+
+
 		{% endblock %}
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
