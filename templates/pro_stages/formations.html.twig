@@ -25,7 +25,7 @@
                     <div class="card border-success mb-3" style="max-width: 20rem;">
                         <div class="card-header">Formation n°{{uneFormation.id}}</div>
                             <div class="card-body">
-                                <h4 class="card-title"><a href="{{path('prostages_formations_stages',{id:uneFormation.id})}}" class="link-success">{{uneFormation.nomCourt}}</a></h4>
+                                <h4 class="card-title"><a href="{{path('prostages_formations_stages',{nomCourtFormation:uneFormation.nomCourt})}}" class="link-success">{{uneFormation.nomCourt}}</a></h4>
                                     <p class="card-text">{{uneFormation.nomLong}}</p>
                             </div>
                     </div>

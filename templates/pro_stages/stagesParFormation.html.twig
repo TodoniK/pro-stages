@@ -5,7 +5,7 @@
 <center>
 
     <br>
-    <h1>Vous êtes sur la page des stages proposés par la formation {{stageParFormation.nomLong}}</h1>
+    <h1>Vous êtes sur la page des stages proposés par la formation {{nomFormation}}</h1>
     <br>
 </center>   
  
@@ -27,11 +27,11 @@
         <!--Inscription de mes données dans le tableau-->
         <tbody>
           
-          {% for unStage in stageParFormation.stages %}
+          {% for unStage in stages %}
           
           <tr>
             <td style="padding-left: 20px"><a href="{{path('prostages_stages',{id:unStage.id})}}" class="link-success">{{unStage.titre}}</a></td>
-            <td style="padding-left: 20px">{{stageParFormation.nomCourt}}</td>
+            <td style="padding-left: 20px">{{nomFormation}}</td>
             <td style="padding-left: 20px">{{unStage.entreprise.nom}}</td>
             <td style="padding-left: 20px">{{unStage.descMissions}}</td>
             <td style="padding-left: 20px">{{unStage.emailContact}}</td>
