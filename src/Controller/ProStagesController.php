@@ -58,13 +58,15 @@ class ProStagesController extends AbstractController
 	// Utilisation du système d'injection de dépendances poussé
 
 	/**
-	 * @Route ("/stages/{id}" , name ="prostages_stages")
+	 * @Route ("/stages/{idStage}" , name ="prostages_stages")
 	 */
-	 public function afficherStages (Stage $stage) : Response
+	 public function afficherStages (StageRepository $repositoryStages, $idStage) : Response
 	 {
 		// Affichage de la vue et passage des données
-		return $this->render('pro_stages/stages.html.twig',['stage' => $stage]);
+		$stages = $repositoryStages->recupererInformationsStage($idStage);
 		
+		return $this->render('pro_stages/stages.html.twig', ['stages' => $stages, 'idStage' => $idStage]);
+
 	 }
 
 	/**

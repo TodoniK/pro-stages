@@ -97,5 +97,21 @@ class StageRepository extends ServiceEntityRepository
                     ->getQuery()
                     ->getResult();
     }
+
+    /**
+    * @return Stage[] Returns an array of Stage objects
+    */
+    public function recupererInformationsStage($idStage)
+    {
+        return $this->createQueryBuilder('s')
+                    ->select('s, e, f')
+                    ->join('s.entreprise', 'e')
+                    ->join('s.formations', 'f')
+                    ->where('s.id = :idStage')
+                    ->setParameter('idStage', $idStage)
+                    ->getQuery()
+                    ->getResult();
     
+    
+    }
 }

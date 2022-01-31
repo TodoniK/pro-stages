@@ -5,14 +5,15 @@
 <center>
 
     <br>
-    <h1>Vous êtes sur le stage numéro {{stage.id}}</h1>
+    <h1>Vous êtes sur le stage numéro {{idStage}}</h1>
     <br>
 </center>   
  
+ {% for stage in stages %}
     <div class="container-fluid">
         <div class="col-md-12">
                         <div class="card border-success mb-3">
-                            <div class="card-header">Stage n°{{stage.id}}</div>
+                            <div class="card-header">Stage n°{{idStage}}</div>
                                 <div class="card-body">
                                     <h4 class="card-title">Titre : {{stage.titre}}</h4>
                                         <p class="card-text"><h5><b>Formation concernée :
@@ -35,6 +36,6 @@
                         </div>
         </div>
     </div>
-
+{% endfor %}
 
 {% endblock %}
