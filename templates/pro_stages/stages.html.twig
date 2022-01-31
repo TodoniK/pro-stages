@@ -16,7 +16,7 @@
                             <div class="card-header">Stage n°{{idStage}}</div>
                                 <div class="card-body">
                                     <h4 class="card-title">Titre : {{stage.titre}}</h4>
-                                        <p class="card-text"><h5><b>Formation concernée :
+                                        <p class="card-text"><h5><b>Formation(s) concernée(s) :
                                                                     {% for uneFormation in stage.formations %}
                                                                         {% if loop.last %}
                                                                             {{uneFormation.nomCourt}} ({{uneFormation.nomLong}}).

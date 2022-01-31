@@ -29,7 +29,7 @@
           {% for unStage in stages %}
           
           <tr>
-            <td style="padding-left: 20px"><a href="{{path('prostages_stages',{id:unStage.id})}}" class="link-success">{{unStage.titre}}</a></td>
+            <td style="padding-left: 20px"><a href="{{path('prostages_stages',{idStage:unStage.id})}}" class="link-success">{{unStage.titre}}</a></td>
             <td style="padding-left: 20px">{{nomEntreprise}}</td>
             <td style="padding-left: 20px">{{unStage.descMissions}}</td>
             <td style="padding-left: 20px">{{unStage.emailContact}}</td>
