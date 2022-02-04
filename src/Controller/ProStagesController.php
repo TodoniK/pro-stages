@@ -11,6 +11,12 @@ use App\Entity\Formation;
 use App\Repository\StageRepository;
 use App\Repository\FormationRepository;
 use App\Repository\EntrepriseRepository;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 class ProStagesController extends AbstractController
@@ -92,6 +98,53 @@ class ProStagesController extends AbstractController
 
         return $this->render('pro_stages/stagesParEntreprise.html.twig', ['stages' => $stages,'nomEntreprise' => $nomEntreprise]);
 	   
+	}
+
+	/**
+	 * @Route ("/ajouterEntreprise" , name ="prostages_ajout_entreprise")
+	 */
+	public function ajouterEntreprise (Request $requetteHttp, EntityManagerInterface $manager) : Response
+	{
+
+		// Création d'une nouvelle ressource (formulaire)
+		$entreprise = new Entreprise();
+
+		// Création du formulaire
+		$formulaireEntreprise = $this->createFormBuilder($entreprise)
+									 ->add('nom', TextType::class)
+									 ->add('adresse', TextType::class)
+									 ->add('activite', TextareaType::class)
+									 ->add('URLSite', UrlType::class)
+									 ->add('Envoyer', SubmitType::class)
+									 ->getForm();
+
+		// Demande d'analyse de la dernière requete http
+		$formulaireEntreprise->handleRequest($requetteHttp);
+
+		if ( $formulaireEntreprise->isSubmitted() )
+		{
+			// Envoyer les ressources en BD
+			$manager->persist($entreprise);
+			$manager->flush();
+
+			// Rediriger l'utilisateur vers la page de remerciement
+			return $this->redirectToRoute('prostages_remerciement');
+		}
+		
+		// Création de la vue du formulaire
+		$vueFormulaireEntreprise = $formulaireEntreprise -> createView();
+
+	    // Affichage de la vue et du formulaire (passé en paramètre)
+        return $this->render('pro_stages/ajouterEntreprise.html.twig', ['vueFormulaireEntreprise' => $vueFormulaireEntreprise]);
+	   
+	}
+
+	/**
+	 * @Route ("/remerciement" , name ="prostages_remerciement")
+	 */
+	public function afficherRemerciement () : Response
+	{
+        return $this->render('pro_stages/remerciement.html.twig');	   
 	}
 }
 
