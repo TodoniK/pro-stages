@@ -7,10 +7,12 @@
     <h2>Formulaire d'ajout d'une entreprise</h2><br>
 
     {{ form_start (vueFormulaireEntreprise) }}
-        {{ form_row (vueFormulaireEntreprise.activite) }}<br>
-        {{ form_row (vueFormulaireEntreprise.adresse) }}<br>
         {{ form_row (vueFormulaireEntreprise.nom) }}<br>
+        {{ form_row (vueFormulaireEntreprise.adresse) }}<br>
+        {{ form_row (vueFormulaireEntreprise.activite) }}<br>
         {{ form_row (vueFormulaireEntreprise.URLSite) }}<br>
+        {{ form_row (vueFormulaireEntreprise.Envoyer, {'attr':{"class":"btn btn-success"}}) }}<br>
+
     {{ form_end (vueFormulaireEntreprise) }}
 
     <br>
