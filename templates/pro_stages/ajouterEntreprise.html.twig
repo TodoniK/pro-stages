@@ -12,7 +12,7 @@
 		<div class="col-md-4">
 		</div>
 		<div class="col-md-4">
-            {{ form_start (vueFormulaireEntreprise) }}
+            {{ form_start (vueFormulaireEntreprise, {'attr':{"novalidate":"novalidate"}})}}
             {{ form_row (vueFormulaireEntreprise.nom, {'attr':{"class":"form-control"}}) }}<br>
             {{ form_row (vueFormulaireEntreprise.adresse, {'attr':{"class":"form-control"}}) }}<br>
             {{ form_row (vueFormulaireEntreprise.activite, {'attr':{"class":"form-control"}}) }}<br>

@@ -121,7 +121,7 @@ class ProStagesController extends AbstractController
 		// Demande d'analyse de la dernière requete http
 		$formulaireEntreprise->handleRequest($requetteHttp);
 
-		if ( $formulaireEntreprise->isSubmitted() )
+		if ( $formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
 		{
 			// Envoyer les ressources en BD
 			$manager->persist($entreprise);
