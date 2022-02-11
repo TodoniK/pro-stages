@@ -4,14 +4,19 @@
 
 <center>
     <br>
-    <h2>Liste des stages par entreprise</h2>
-    <br>
-
-    <div class="col-md-12">
-					<center>
-						<a href="{{path('prostages_entreprises_a_modifier')}}" class="link-success">Modifier une entreprise</a>
-					</center>
-
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+        <div class="alert alert-dismissible alert-warning col-md-4">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <h4 class="alert-heading">Attention !</h4>
+            <p class="mb-0">Vous vous appretez à modifier une entreprise.</p>
+        </div>
+    <div class="col-md-4">
+		</div>
+	</div>
+    </div>
     <br>
 
     {% set debutNouvelleLigne = true %}
@@ -32,7 +37,7 @@
                     <div class="card border-success mb-3" style="max-width: 20rem;">
                         <div class="card-header">Entreprise n°{{uneEntreprise.id}}</div>
                             <div class="card-body">
-                                <h4 class="card-title"><a href="{{path('prostages_entreprises_stages',{nomEntreprise:uneEntreprise.nom})}}" class="link-success">{{uneEntreprise.nom}}</a></h4>
+                                <h4 class="card-title"><a href="{{path('prostages_entreprises_modifier',{nomEntreprise:uneEntreprise.nom})}}" class="link-success">{{uneEntreprise.nom}}</a></h4>
                                     <p class="card-text">Activité : {{uneEntreprise.activite}}</p>
                             </div>
                     </div>

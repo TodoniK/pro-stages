@@ -128,7 +128,7 @@ class ProStagesController extends AbstractController
 			$manager->flush();
 
 			// Rediriger l'utilisateur vers la page de remerciement
-			return $this->redirectToRoute('prostages_remerciement');
+			return $this->redirectToRoute('prostages_remerciement_ajout');
 		}
 		
 		// Création de la vue du formulaire
@@ -140,11 +140,69 @@ class ProStagesController extends AbstractController
 	}
 
 	/**
-	 * @Route ("/remerciement" , name ="prostages_remerciement")
+	 * @Route ("/remerciementAjout" , name ="prostages_remerciement_ajout")
 	 */
-	public function afficherRemerciement () : Response
+	public function afficherRemerciementAjout () : Response
 	{
-        return $this->render('pro_stages/remerciement.html.twig');	   
+        return $this->render('pro_stages/remerciementAjout.html.twig');	   
+	}
+
+	/**
+	 * @Route ("/remerciementModif" , name ="prostages_remerciement_modif")
+	 */
+	public function afficherRemerciementModif () : Response
+	{
+        return $this->render('pro_stages/remerciementModif.html.twig');	   
+	}
+
+	/**
+	* @Route ("/entreprisesAModifier" , name ="prostages_entreprises_a_modifier")
+	*/
+	public function filtrerEntreprisesAModifier (EntrepriseRepository $repositoryEntreprise) : Response
+	{
+		// Récupérer les ressources enregistrées en BD
+		$entreprises = $repositoryEntreprise->findall();
+
+		// Affichage de la vue et passage des données
+		return $this->render('pro_stages/entreprisesAModifier.html.twig',['entreprises'=>$entreprises]);
+	}
+
+	/**
+	 * @Route ("/modifierEntreprise/{nomEntreprise}" , name ="prostages_entreprises_modifier")
+	 */
+	public function modifierEntreprise (Request $requetteHttp, EntityManagerInterface $manager, EntrepriseRepository $repositoryEntreprise, $nomEntreprise) : Response
+	{
+		// Trouver l'entreprise pour pouvoir remplir les champs
+		$uneEntreprise = $repositoryEntreprise->trouverEntrepriseParNom($nomEntreprise);
+
+		// Création du formulaire
+		$formulaireEntreprise = $this->createFormBuilder($uneEntreprise)
+									 ->add('nom', TextType::class)
+									 ->add('adresse', TextType::class)
+									 ->add('activite', TextareaType::class)
+									 ->add('URLSite', UrlType::class)
+									 ->add('Envoyer', SubmitType::class)
+									 ->getForm();
+
+		// Demande d'analyse de la dernière requete http
+		$formulaireEntreprise->handleRequest($requetteHttp);
+
+		if ( $formulaireEntreprise->isSubmitted() )
+		{
+			// Envoyer les ressources en BD
+			$manager->persist($uneEntreprise);
+			$manager->flush();
+
+			// Rediriger l'utilisateur vers la page de remerciement
+			return $this->redirectToRoute('prostages_remerciement_modif');
+		}
+		
+		// Création de la vue du formulaire
+		$vueFormulaireEntreprise = $formulaireEntreprise -> createView();
+
+	    // Affichage de la vue et du formulaire (passé en paramètre)
+        return $this->render('pro_stages/modifierEntreprise.html.twig', ['vueFormulaireEntreprise' => $vueFormulaireEntreprise]);
+	   
 	}
 }
 

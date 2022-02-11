@@ -47,4 +47,15 @@ class EntrepriseRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function trouverEntrepriseParNom($nomEntreprise)
+    {
+        return $this->createQueryBuilder('e')
+                    ->select('e')
+                    ->where('e.nom = :nomEntreprise')
+                    ->setParameter('nomEntreprise', $nomEntreprise)
+                    ->getQuery()
+                    ->getSingleResult();
+    }
+    
 }
