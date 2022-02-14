@@ -114,4 +114,27 @@ class StageRepository extends ServiceEntityRepository
     
     
     }
+
+    public function trouverStagesEntreprise($nomEntreprise)
+    {
+        return $this->createQueryBuilder('s')
+                    ->select('s,e')
+                    ->join('s.entreprise', 'e')
+                    ->where('e.nom = :nomEntreprise')
+                    ->setParameter('nomEntreprise', $nomEntreprise)
+                    ->getQuery()
+                    ->getResult();
+    }
+
+    public function trouverStagesFormation($nomFormation)
+    {
+        return $this->createQueryBuilder('s')
+                    ->select('s,f')
+                    ->join('s.formations', 'f')
+                    ->where('f.nomCourt = :nomFormation')
+                    ->setParameter('nomFormation', $nomFormation)
+                    ->getQuery()
+                    ->getResult();
+    }
+    
 }

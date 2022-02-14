@@ -81,7 +81,7 @@ class ProStagesController extends AbstractController
 	public function afficherStagesParFormations (StageRepository $repositoryStages, $nomCourtFormation) : Response
 	{
 	   // Affichage de la vue et passage des données
-	   $stages = $repositoryStages->findStagesParNomCourtFormation($nomCourtFormation);
+	   $stages = $repositoryStages->trouverStagesFormation($nomCourtFormation);
 
         return $this->render('pro_stages/stagesParFormation.html.twig', ['stages' => $stages,
                                                                                    'nomFormation' => $nomCourtFormation]);
@@ -94,9 +94,9 @@ class ProStagesController extends AbstractController
 	public function afficherStagesParEntreprises (StageRepository $repositoryStages, $nomEntreprise) : Response
 	{
 	   // Affichage de la vue et passage des données
-	   $stages = $repositoryStages->findStagesParNomEntreprise($nomEntreprise);
+	   $stages = $repositoryStages->trouverStagesEntreprise($nomEntreprise);
 
-        return $this->render('pro_stages/stagesParEntreprise.html.twig', ['stages' => $stages,'nomEntreprise' => $nomEntreprise]);
+       return $this->render('pro_stages/stagesParEntreprise.html.twig', ['stages' => $stages,'nomEntreprise' => $nomEntreprise]);
 	   
 	}
 
