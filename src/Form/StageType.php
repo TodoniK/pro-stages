@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\EntrepriseType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Formation;
 
 class StageType extends AbstractType
 {
@@ -21,7 +23,13 @@ class StageType extends AbstractType
             ->add('descMissions',TextareaType::class)
             ->add('emailContact',EmailType::class)
             ->add('entreprise',EntrepriseType::class)
-            //->add('formations')
+            ->add('formations', EntityType::class, array(
+                'class' => Formation::class,
+                'choice_label' => function(Formation $formations)
+                {return $formations->getNomCourt();},
+                'multiple' => true,
+                'expanded' => true,
+            ))
         ;
     }
 
