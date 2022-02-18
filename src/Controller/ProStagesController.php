@@ -217,7 +217,6 @@ class ProStagesController extends AbstractController
 			// Envoyer les ressources en BD
 			$manager->persist($stage);
 			$manager->persist($stage->getEntreprise());
-			$manager->persist($stage->getFormation());
 			$manager->flush();
 
 			// Rediriger l'utilisateur vers la page de remerciement
