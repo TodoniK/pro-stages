@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<center>
+    <br>
+    <h2>Formulaire d'ajout d'un stage</h2><br>
+</center>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4">
+            {{ form_start (vueFormulaireStage, {'attr':{"novalidate":"novalidate"}})}}
+            {{ form_row (vueFormulaireStage.titre, {'attr':{"class":"form-control"}}) }}<br>
+            {{ form_row (vueFormulaireStage.descMissions, {'attr':{"class":"form-control"}, 'label' : 'Description de la mission'}) }}<br>
+            {{ form_row (vueFormulaireStage.emailContact, {'attr':{"class":"form-control"}}) }}<br>
+            {{ form_row (vueFormulaireStage.entreprise.nom, {'attr':{"class":"form-control"}}) }}<br>
+            {{ form_row (vueFormulaireStage.entreprise.adresse, {'attr':{"class":"form-control"}}) }}<br>
+            {{ form_row (vueFormulaireStage.entreprise.activite, {'attr':{"class":"form-control"}}) }}<br>
+            {{ form_row (vueFormulaireStage.entreprise.URLSite, {'attr':{"class":"form-control"}, 'label' : 'Url du site entreprise'}) }}<br>
+            <center>
+                <input type="submit" class="btn btn-success" value="Envoyer"/><br>
+            </center>
+            {{ form_end (vueFormulaireStage) }}
+		</div>
+		<div class="col-md-4">
+		</div>
+	</div>
+    </div>
+
+{% endblock %}

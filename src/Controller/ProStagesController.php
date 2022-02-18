@@ -17,6 +17,8 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Form\EntrepriseType;
+use App\Form\StageType;
 
 
 class ProStagesController extends AbstractController
@@ -110,13 +112,8 @@ class ProStagesController extends AbstractController
 		$entreprise = new Entreprise();
 
 		// Création du formulaire
-		$formulaireEntreprise = $this->createFormBuilder($entreprise)
-									 ->add('nom', TextType::class)
-									 ->add('adresse', TextType::class)
-									 ->add('activite', TextareaType::class)
-									 ->add('URLSite', UrlType::class)
-									 ->add('Envoyer', SubmitType::class)
-									 ->getForm();
+		$formulaireEntreprise = $this->createForm(EntrepriseType::class ,$entreprise);
+									 
 
 		// Demande d'analyse de la dernière requete http
 		$formulaireEntreprise->handleRequest($requetteHttp);
@@ -176,13 +173,7 @@ class ProStagesController extends AbstractController
 		$uneEntreprise = $repositoryEntreprise->trouverEntrepriseParNom($nomEntreprise);
 
 		// Création du formulaire
-		$formulaireEntreprise = $this->createFormBuilder($uneEntreprise)
-									 ->add('nom', TextType::class)
-									 ->add('adresse', TextType::class)
-									 ->add('activite', TextareaType::class)
-									 ->add('URLSite', UrlType::class)
-									 ->add('Envoyer', SubmitType::class)
-									 ->getForm();
+		$formulaireEntreprise = $formulaireEntreprise = $this->createForm(EntrepriseType::class ,$uneEntreprise);
 
 		// Demande d'analyse de la dernière requete http
 		$formulaireEntreprise->handleRequest($requetteHttp);
@@ -202,6 +193,41 @@ class ProStagesController extends AbstractController
 
 	    // Affichage de la vue et du formulaire (passé en paramètre)
         return $this->render('pro_stages/modifierEntreprise.html.twig', ['vueFormulaireEntreprise' => $vueFormulaireEntreprise]);
+	   
+	}
+
+	/**
+	 * @Route ("/ajouterStage" , name ="prostages_ajout_stage")
+	 */
+	public function ajouterStage (Request $requetteHttp, EntityManagerInterface $manager) : Response
+	{
+
+		// Création d'une nouvelle ressource (formulaire)
+		$stage = new Stage();
+
+		// Création du formulaire
+		$formulaireStage = $this->createForm(StageType::class, $stage);
+									 
+
+		// Demande d'analyse de la dernière requete http
+		$formulaireStage->handleRequest($requetteHttp);
+
+		if ( $formulaireStage->isSubmitted() && $formulaireStage->isValid())
+		{
+			// Envoyer les ressources en BD
+			$manager->persist($stage);
+			$manager->persist($stage->getEntreprise());
+			$manager->flush();
+
+			// Rediriger l'utilisateur vers la page de remerciement
+			return $this->redirectToRoute('prostages_remerciement_ajout');
+		}
+		
+		// Création de la vue du formulaire
+		$vueFormulaireStage = $formulaireStage -> createView();
+
+	    // Affichage de la vue et du formulaire (passé en paramètre)
+        return $this->render('pro_stages/ajouterStage.html.twig', ['vueFormulaireStage' => $vueFormulaireStage]);
 	   
 	}
 }
