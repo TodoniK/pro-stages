@@ -7,6 +7,7 @@ use Doctrine\Persistence\ObjectManager;
 use App\Entity\Entreprise;
 use App\Entity\Stage;
 use App\Entity\Formation;
+use App\Entity\User;
 
 
 class AppFixtures extends Fixture
@@ -123,6 +124,24 @@ class AppFixtures extends Fixture
             
             $manager->persist($stage);
         }
+
+        // Création des utilisateurs
+        $jules = new User();
+        $xan = new User();
+        $roles_jules = array('ROLE_ADMIN');
+        $roles_xan = array('ROLE_USER');
+
+        $jules->setUsername("jules");
+        $xan->setUsername("xan");
+
+        $jules->setPassword('$2y$10$l4XVR7B2xIiCOqKROf2XN.pIPQc3GhQeWLsPsmiWorVqzG.EErfRe');
+        $xan->setPassword('$2y$10$EEh9hWvsT2E0oad2XDC0cOisvKugs9eYNuA9fbHbBtNqA8tNIKv8q');
+
+        $jules->setRoles($roles_jules);
+        $xan->setRoles($roles_xan);
+        
+        $manager->persist($jules);
+        $manager->persist($xan);
         
         // Envoi des données enregistrées sur la bd
         $manager->flush();
