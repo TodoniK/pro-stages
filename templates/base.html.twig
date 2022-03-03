@@ -6,13 +6,26 @@
 		<!-- BLOCK DU TITRE -->
         {% block title %}
 			<title>ProStages</title>
-			<div class="logoAccueil">
-				<center>
-				<a href="{{path('prostages_accueil')}}">
-					<img src="/img/logo_prostages.png" height=200 weight=200>
-				</a>
-				<br>
-				</center>
+			<div class="row">
+
+			<div class="col-md-4">
+			</div>
+
+				<div class="col-md-4">
+					<center>
+						<a href="{{path('prostages_accueil')}}">
+							<img src="/img/logo_prostages.png" height=200 weight=200>
+						</a>
+						<br>
+					</center>
+				</div>
+
+			<div class="col-md-4">
+				<button class="btn btn-success" href="{{path('login')}}">
+                        Connexion
+                    </button>
+			</div>
+				
 			</div>
 
 			<br>
