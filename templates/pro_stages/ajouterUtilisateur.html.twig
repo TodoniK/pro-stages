@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<center>
+    <br>
+    <h2>Formulaire d'inscription </h2><br>
+</center>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4">
+            {{ form_start (vueFormulaireUtilisateur, {'attr':{"novalidate":"novalidate"}})}}
+            {{ form_row (vueFormulaireUtilisateur.username, {'attr':{"class":"form-control"},'label' : "Nom d'utilisateur", 'placeholder' : "Votre nom d'utilisateur ..."}) }}<br>
+            {{ form_row (vueFormulaireUtilisateur.password, {'attr':{"class":"form-control"},'label' : "Mot de passe", 'placeholder' : "Votre mot de passe ..."}) }}<br>
+            <center>
+               <input type="submit" class="btn btn-success" value="Envoyer"/><br><br>
+            </center>
+            {{ form_end (vueFormulaireUtilisateur) }}
+		</div>
+		<div class="col-md-4">
+		</div>
+	</div>
+    </div>
+
+{% endblock %}

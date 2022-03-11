@@ -16,12 +16,6 @@
                         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
 
-                    {% if app.user %}
-                        <div class="mb-3">
-                            Vous êtes connectés en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Deconnexion</a>
-                        </div>
-                    {% endif %}
-
                     <center><h1 class="h3 mb-3 font-weight-normal">Formulaire d'authentification</h1></center>
                     <center><label for="inputUsername">Nom d'utilisateur</label><br></center>
                     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus><br>

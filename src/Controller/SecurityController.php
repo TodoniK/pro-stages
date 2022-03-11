@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Entity\User;
+use App\Form\UserType;
 
 class SecurityController extends AbstractController
 {
@@ -14,9 +18,9 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        //if ($this->getUser()) {
+        //     return $this->redirectToRoute('app_login');
+        //}
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -32,5 +36,38 @@ class SecurityController extends AbstractController
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    /**
+	 * @Route ("/ajouterUtilisateur" , name ="prostages_ajout_utilisateur")
+	 */
+	public function ajouterUtilisateur (Request $requetteHttp, EntityManagerInterface $manager) : Response
+	{
+
+		// Création d'une nouvelle ressource (formulaire)
+		$utilisateur = new User();
+
+		// Création du formulaire
+		$formulaireUtilisateur = $this->createForm(UserType::class,$utilisateur);
+									 
+
+		// Demande d'analyse de la dernière requete http
+		$formulaireUtilisateur->handleRequest($requetteHttp);
+
+		if ( $formulaireUtilisateur->isSubmitted() && $formulaireUtilisateur->isValid())
+		{
+			// Envoyer les ressources en BD
+			//$manager->persist($utilisateur);
+			//$manager->flush();
+
+			// Rediriger l'utilisateur vers la page de remerciement
+			return $this->redirectToRoute('prostages_remerciement_ajout');
+		}
+
+        // Création de la vue du formulaire
+		$vueFormulaireUtilisateur = $formulaireUtilisateur -> createView();
+
+	    // Affichage de la vue et du formulaire (passé en paramètre)
+        return $this->render('pro_stages/ajouterUtilisateur.html.twig', ['vueFormulaireUtilisateur' => $vueFormulaireUtilisateur]);
     }
 }
