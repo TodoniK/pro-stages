@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\User;
 use App\Form\UserType;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
@@ -41,7 +42,7 @@ class SecurityController extends AbstractController
     /**
 	 * @Route ("/ajouterUtilisateur" , name ="prostages_ajout_utilisateur")
 	 */
-	public function ajouterUtilisateur (Request $requetteHttp, EntityManagerInterface $manager) : Response
+	public function ajouterUtilisateur (Request $requetteHttp, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder) : Response
 	{
 
 		// Création d'une nouvelle ressource (formulaire)
@@ -56,9 +57,17 @@ class SecurityController extends AbstractController
 
 		if ( $formulaireUtilisateur->isSubmitted() && $formulaireUtilisateur->isValid())
 		{
-			// Envoyer les ressources en BD
-			//$manager->persist($utilisateur);
-			//$manager->flush();
+            // Mettre un role à un utilisateur
+            $utilisateur->setRoles(['ROLE_USER']);
+
+			// Encode le mot de passe de l'utilisateur
+            $encodageMdp = $encoder->encodePassword($utilisateur, $utilisateur->getPassword());
+
+            $utilisateur->setPassword($encodageMdp);
+
+            // Envoyer les ressources en BD
+			$manager->persist($utilisateur);
+			$manager->flush();
 
 			// Rediriger l'utilisateur vers la page de remerciement
 			return $this->redirectToRoute('prostages_remerciement_ajout');
