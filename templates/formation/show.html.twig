@@ -20,23 +20,29 @@
                                 <h4 class="card-title">{{formation.nomCourt}}</h4>
                                     <p class="card-text">{{formation.nomLong}}</p>
                                     <p class="card-text">Formation disponible au sein de l'IUT de Bayonne</p>
+                                    
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    
                                     <div class="row">
 
-                                    <div class="col-md-4">
-                                    <center>
-                                        <a href="{{path('formation_edit',{id:formation.id})}}" class="link-success">Editer la formation</a>
-                                    </center>
-                                    </div>
-                                    
-                                    <div class="col-md-4">
-		                            </div>
+                                        <div class="col-md-4">
+                                            <center>
+                                                <a href="{{path('formation_edit',{id:formation.id})}}" class="link-success">Editer formation</a>
+                                            </center>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                        </div>
 
-                                    <div class="col-md-4">
-                                    <center>
-                                        <a href="{{path('formation_delete',{id:formation.id})}}" class="link-success">Supprimer la formation</a>
-                                    </center>
-                                    </div>                                    
-                            </div>
+                                        <div class="col-md-4">
+                                            <center>
+                                                <a href="{{path('formation_delete',{id:formation.id})}}" class="link-success">Supprimer formation</a>
+                                            </center>
+                                        </div>
+
+                                    </div>
+
+                                    {% endif %}
                     </div>
                 </div>
 		

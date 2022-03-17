@@ -7,6 +7,30 @@
     <h2>Liste des stages par formation</h2>
     <br>
 
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
+    
+        <div class="row">
+
+                                        <div class="col-md-4">
+                                            <center>
+                                            </center>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <center>
+                                                <a href="{{path('formation_new')}}"><button class="btn btn-success">Ajouter une formation</button></a>
+                                            </center>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <center>
+                                            </center>
+                                        </div>
+
+                                    </div><br>
+    
+    {% endif %}
+
     {% set debutNouvelleLigne = true %}
 	    
         <!--Boucle pour créer les conteneurs et remplir les cards-->
