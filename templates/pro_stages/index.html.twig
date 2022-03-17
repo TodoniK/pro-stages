@@ -23,7 +23,9 @@
       Vous trouverez ci-dessous les dernières ressources pédagogiques ajoutées sur Pro Stages.
       </p>
       <br>
-      <a href="{{path('prostages_ajout_stage')}}" class="link-success">Ajouter un stage</a><br>
+      {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{path('prostages_ajout_stage')}}"><button class="btn btn-success">Ajouter un stage</button></a><br>
+      {% endif %}
 	<br>
 
 	  <div class="container-fluid">

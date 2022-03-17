@@ -7,11 +7,19 @@
     <h2>Liste des stages par entreprise</h2>
     <br>
 
-    <div class="col-md-12">
-					<center>
-						<a href="{{path('prostages_entreprises_a_modifier')}}" class="link-success">Modifier une entreprise</a>
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
+    <div class="col-md-6">
+                    <center>
+						<a href="{{path('prostages_ajout_entreprise')}}"><button class="btn btn-success">Ajouter une entreprise</button></a>
 					</center>
-
+					
+    </div><br>
+    <div class="col-md-6">
+                    <center>
+						<a href="{{path('prostages_entreprises_a_modifier')}}"><button class="btn btn-success">Modifier une entreprise</button></a>
+					</center>
+    </div>
+    {% endif %}
     <br>
 
     {% set debutNouvelleLigne = true %}
