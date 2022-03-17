@@ -1,4 +1,6 @@
 {{ form_start(form) }}
+    {{ form_row (form.nomLong, {'attr':{"class":"form-control"}}) }}<br>
+    {{ form_row (form.nomCourt, {'attr':{"class":"form-control"}}) }}<br>
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <br><center><button class="btn btn-success">{{ button_label|default('Enregistrer la formation') }}</button></center>
 {{ form_end(form) }}

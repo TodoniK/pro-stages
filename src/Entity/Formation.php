@@ -31,7 +31,7 @@ class Formation
     private $nomCourt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Stage::class, mappedBy="formations")
+     * @ORM\ManyToMany(targetEntity=Stage::class, mappedBy="formations", cascade={"persist"})
      */
     private $stages;
 
