@@ -78,7 +78,7 @@ class ProStagesController extends AbstractController
 	 }
 
 	/**
-	 * @Route ("/formations/{nomCourtFormation}" , name ="prostages_formations_stages")
+	 * @Route ("/stageParFormation/{nomCourtFormation}" , name ="prostages_formations_stages")
 	 */
 	public function afficherStagesParFormations (StageRepository $repositoryStages, $nomCourtFormation) : Response
 	{

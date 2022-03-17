@@ -1,37 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formation index{% endblock %}
-
 {% block body %}
-    <h1>Formation index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>NomLong</th>
-                <th>NomCourt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for formation in formations %}
-            <tr>
-                <td>{{ formation.id }}</td>
-                <td>{{ formation.nomLong }}</td>
-                <td>{{ formation.nomCourt }}</td>
-                <td>
-                    <a href="{{ path('formation_show', {'id': formation.id}) }}">show</a>
-                    <a href="{{ path('formation_edit', {'id': formation.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+<center>
+    <br>
+    <h2>Liste des stages par formation</h2>
+    <br>
+
+    {% set debutNouvelleLigne = true %}
+	    
+        <!--Boucle pour créer les conteneurs et remplir les cards-->
+
+        {% for uneFormation in formations %}
+
+        {#Verifier si on est en début de ligne#}
+        {% if debutNouvelleLigne == true %}
+            <div class="row">
+		        
+            {% set debutNouvelleLigne = false %}
+        {% endif %}
+
+        <!--Affichage de l'ensemble des entreprises dans les petites card-->
+                <div class="col-md-4">
+                    <div class="card border-success mb-3" style="max-width: 20rem;">
+                        <div class="card-header">Formation n°{{uneFormation.id}}</div>
+                            <div class="card-body">
+                                <h4 class="card-title"><a href="{{path('formation_show',{id:uneFormation.id})}}" class="link-success">{{uneFormation.nomCourt}}</a></h4>
+                                    <p class="card-text">{{uneFormation.nomLong}}</p>
+                                    <a href="{{path('prostages_formations_stages',{nomCourtFormation:uneFormation.nomCourt})}}" class="link-success">Voir les stages</a>
+                            </div>
+                    </div>
+                </div>
+		
+        {#Verifier s'il faut passer à la ligne suivante (toutes les 3 entreprises)#}
+        {% if loop.index % 3 == 0 %}
+            </div>
+            <br>
+            {% set debutNouvelleLigne = true %}
+        {% endif %}
+
         {% endfor %}
-        </tbody>
-    </table>
+    
+</center>
 
-    <a href="{{ path('formation_new') }}">Create new</a>
 {% endblock %}
