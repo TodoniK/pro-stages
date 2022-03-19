@@ -6,6 +6,8 @@ use App\Repository\FormationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=FormationRepository::class)
@@ -22,11 +24,13 @@ class Formation
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Le nom complet de la formation doit être renseigné !")
      */
     private $nomLong;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(message="L'abréviation' de la formation doit être renseignée !")
      */
     private $nomCourt;
 

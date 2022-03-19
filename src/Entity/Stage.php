@@ -6,6 +6,8 @@ use App\Repository\StageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=StageRepository::class)
@@ -21,16 +23,22 @@ class Stage
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Le titre du stage doit être absolument renseigné !")
      */
     private $titre;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="La description du stage doit être absolument renseigné !")
+     * @Assert\Length(
+     *     min = 50,
+     *     minMessage = "La description doit être composée d'au moins {{ limit }} caractères.")
      */
     private $descMissions;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Email(message="Le format de l'email n'est pas respecté !")
      */
     private $emailContact;
 
